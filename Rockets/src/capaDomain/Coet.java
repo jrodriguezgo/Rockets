@@ -19,13 +19,13 @@ public class Coet {
 		this.name = name;
 		this.speed = 0;
 		this.distance = 0;
-		this.fuel = 1000;
+		this.fuel = 3600;
 		this.mainPropulsor = new ArrayList<Integer>();
 			this.mainPropulsor.add(33);
 			this.mainPropulsor.add(54);
 			this.mainPropulsor.add(25);
 			this.mainPropulsor.add(10);
-			//this.mainPropulsor.add(8);
+			this.mainPropulsor.add(8);
 
 	}
 
@@ -67,7 +67,7 @@ public class Coet {
 		int currentAcceleration;
 		currentAcceleration = calculateAcceleration(acceleration, time);
 		speed += currentAcceleration;
-		this.distance += this.speed;
+		this.distance += this.speed * time;
 
 		return 0;
 	}
