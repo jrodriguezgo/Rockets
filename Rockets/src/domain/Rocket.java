@@ -1,32 +1,31 @@
-package capaDomain;
+package domain;
 
 import java.util.ArrayList;
 
 //Circuit: IceRace: 1400 m, temps 20 segons. 
 //Coet: un coet de cinc propulsors de 33,54,25, 10 i 8 i amb 3600 litres de dipòsit
 
-public class Coet {
+public class Rocket {
 
 	private String name;
 	private int acceleration;
 	private int speed;
 	private int distance;
 	private double fuel;
-	private ArrayList<Integer> mainPropulsor;
-	// public int currentAcceleration;
+	private ArrayList<Integer> propeller;
 
-	public Coet(String name) {
+	public Rocket(String name) throws Exception {
+
 		this.name = name;
 		this.speed = 0;
 		this.distance = 0;
 		this.fuel = 3600;
-		this.mainPropulsor = new ArrayList<Integer>();
-			this.mainPropulsor.add(33);
-			this.mainPropulsor.add(54);
-			this.mainPropulsor.add(25);
-			this.mainPropulsor.add(10);
-			this.mainPropulsor.add(8);
-
+		this.propeller = new ArrayList<Integer>();
+			this.propeller.add(33);
+			this.propeller.add(54);
+			this.propeller.add(25);
+			this.propeller.add(10);
+			this.propeller.add(8);
 	}
 
 	public String getName() {
@@ -48,19 +47,18 @@ public class Coet {
 	public double getFuel() {
 		return this.fuel;
 	}
-
 	
 	public int calculateAcceleration(int acceleration, int time) {
-		int propulsors = 0;
-		for (int i = 0; i < this.mainPropulsor.size(); i++) {
-			if(this.mainPropulsor.get(i) > acceleration) {
-				propulsors += acceleration;
+		int thrusters = 0;
+		for (int i = 0; i < this.propeller.size(); i++) {
+			if(this.propeller.get(i) > acceleration) {
+				thrusters += acceleration;
 	    	}else {
-	    		propulsors += this.mainPropulsor.get(i);
+	    		thrusters += this.propeller.get(i);
 			}
-			this.acceleration = propulsors;
+			this.acceleration = thrusters;
 		}
-		return propulsors * time;
+		return thrusters * time;
 	}
 	
 	public int calculateSpeedDistance(int acceleration, int time) {
@@ -68,7 +66,6 @@ public class Coet {
 		currentAcceleration = calculateAcceleration(acceleration, time);
 		speed += currentAcceleration;
 		this.distance += this.speed * time;
-
 		return 0;
 	}
 	
