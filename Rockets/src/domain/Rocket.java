@@ -15,23 +15,25 @@ public class Rocket {
 	private ArrayList<Integer> propeller;
 
 	public Rocket(String name) throws Exception {
-
-		this.name = name;
+		if (name != null && name.compareTo("") != 0) {
+			this.name = name;
+		} else
+			throw new IllegalArgumentException("Dades incorrectes");
 		this.speed = 0;
 		this.distance = 0;
 		this.fuel = 3600;
 		this.propeller = new ArrayList<Integer>();
-			this.propeller.add(33);
-			this.propeller.add(54);
-			this.propeller.add(25);
-			this.propeller.add(10);
-			this.propeller.add(8);
+		this.propeller.add(33);
+		this.propeller.add(54);
+		this.propeller.add(25);
+		this.propeller.add(10);
+		this.propeller.add(8);
 	}
 
 	public String getName() {
 		return this.name;
 	}
-	
+
 	public int getAcceleration() {
 		return acceleration;
 	}
@@ -47,20 +49,20 @@ public class Rocket {
 	public double getFuel() {
 		return this.fuel;
 	}
-	
+
 	public int calculateAcceleration(int acceleration, int time) {
 		int thrusters = 0;
 		for (int i = 0; i < this.propeller.size(); i++) {
-			if(this.propeller.get(i) > acceleration) {
+			if (this.propeller.get(i) > acceleration) {
 				thrusters += acceleration;
-	    	}else {
-	    		thrusters += this.propeller.get(i);
+			} else {
+				thrusters += this.propeller.get(i);
 			}
 			this.acceleration = thrusters;
 		}
 		return thrusters * time;
 	}
-	
+
 	public int calculateSpeedDistance(int acceleration, int time) {
 		int currentAcceleration;
 		currentAcceleration = calculateAcceleration(acceleration, time);
@@ -68,11 +70,10 @@ public class Rocket {
 		this.distance += this.speed * time;
 		return 0;
 	}
-	
+
 	public double calculateFuel() {
 		fuel = fuel - (0.02 * Math.pow(speed, 2));
 		return 0;
 	}
-	
-}
 
+}

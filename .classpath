@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Rockets/src"/>
+	<classpathentry kind="lib" path="Rockets/lib/Keyboard.jar"/>
+	<classpathentry kind="output" path="Rockets/bin"/>
+</classpath>
