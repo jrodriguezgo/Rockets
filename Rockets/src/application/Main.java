@@ -27,12 +27,15 @@ public class Main {
 			}else {
 				startTime += set;
 			}
-			System.out.print("Current time: " + startTime + " Acceleration: "  + c.getAcceleration() 
-			+ " Speed: " + c.getSpeed() + " Distance: " + c.getDistance() + " Circuit: " + distance);	
+			currentTimeToString(startTime, c, distance);	
 			currentDistance += c.getDistance();
 			out = fuel(distance, c, currentDistance);
 		}
 		score(out, startTime, c);		
+	}
+	private static void currentTimeToString(int startTime, Rocket c, int distance) {
+		System.out.print("Current time: " + startTime + " Acceleration: "  + c.getAcceleration() 
+		+ " Speed: " + c.getSpeed() + " Distance: " + c.getDistance() + " Circuit: " + distance);
 	}
 	
 	private static boolean fuel(int distance, Rocket coet, int currentDistance) {	
