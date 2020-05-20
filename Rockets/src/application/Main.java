@@ -21,8 +21,11 @@ public class Main {
 			int set, currentDistance = 0;
 			set = c.calculateSpeedDistance(speedUp, 2);
 			set = (int) c.calculateFuel();
+			
 			startTime = timeController(set, startTime);
+			
 			currentTimeToString(startTime, c, distance);
+			
 			currentDistance += c.getDistance();
 			out = fuel(distance, c, currentDistance);
 		}

@@ -15,10 +15,10 @@ public class Rocket {
 	private ArrayList<Integer> propeller;
 
 	public Rocket(String name) throws Exception {
-		if (name != null && name.compareTo("") != 0) {
+		if (name != null && name.isEmpty()) {
 			this.name = name;
 		} else
-			throw new IllegalArgumentException("Dades incorrectes");
+			throw new Exception("Dades incorrectes");
 		this.speed = 0;
 		this.distance = 0;
 		this.fuel = 3600;
