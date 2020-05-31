@@ -11,23 +11,25 @@ public class Rocket {
 	private int acceleration;
 	private int speed;
 	private int distance;
-	private double fuel;
-	private ArrayList<Integer> propeller;
+	private Tank fuel;
+	//llista ha de serde propulsors
+	private ArrayList<Thruster> propellerList;
 
-	public Rocket(String name) throws Exception {
-		if (name != null && name.isEmpty()) {
-			this.name = name;
-		} else
-			throw new Exception("Dades incorrectes");
+	public Rocket(String name, ArrayList<Thruster> propeller, Tank fuel) throws Exception {
+		if (name == null || name.isEmpty())
+			throw new Exception("Incorrect name");
+		this.name = name;
 		this.speed = 0;
 		this.distance = 0;
-		this.fuel = 3600;
-		this.propeller = new ArrayList<Integer>();
-		this.propeller.add(33);
-		this.propeller.add(54);
-		this.propeller.add(25);
-		this.propeller.add(10);
-		this.propeller.add(8);
+		this.fuel = fuel;
+		this.propellerList = new ArrayList<Thruster>();
+		
+		//cambiar
+		/*
+		 for (int i = 0; i < thrusters; i++) {
+			this.propeller.add(0);
+		}
+		*/
 	}
 
 	public String getName() {
@@ -46,14 +48,17 @@ public class Rocket {
 		return distance;
 	}
 
-	public double getFuel() {
-		return this.fuel;
+	public void addThrusters(Thruster thruster) {
+		this.propellerList.add(thruster);
 	}
 
-	public int calculateAcceleration(int acceleration, int time) {
+	public int calculateAcceleration(int acceleration, int time) throws Exception {
+		if (acceleration <= 0) {
+			new Exception("Error. Negative acceleration");
+		}
 		int thrusters = 0;
 		for (int i = 0; i < this.propeller.size(); i++) {
-			if (this.propeller.get(i) > acceleration) {
+			if (this.propeller.get(i). > acceleration) {
 				thrusters += acceleration;
 			} else {
 				thrusters += this.propeller.get(i);
@@ -63,7 +68,10 @@ public class Rocket {
 		return thrusters * time;
 	}
 
-	public int calculateSpeedDistance(int acceleration, int time) {
+	public int calculateSpeedDistance(int acceleration, int time) throws Exception {
+		if (acceleration <= 0) {
+			new Exception("Error. Negative acceleration");
+		}
 		int currentAcceleration;
 		currentAcceleration = calculateAcceleration(acceleration, time);
 		speed += currentAcceleration;
