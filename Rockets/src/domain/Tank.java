@@ -1,14 +1,20 @@
 package domain;
 
 public class Tank {
-	private int fuelQuantity;
-	public Tank(int fuelQuantity) throws Exception{
+	private double fuelQuantity;
+	public Tank(double fuelQuantity) throws Exception{
 		if(fuelQuantity <= 0) {
 			throw new Exception("Incorrect fuel capacity");
 		}
 		this.fuelQuantity = fuelQuantity;
 	}
-	public int getfuelQuantity() {
+	
+	public double getfuelQuantity() {
 		return this.fuelQuantity;
 	}
+	
+	public void setfuelQuantity(double fuelQuantity) {
+		this.fuelQuantity = fuelQuantity;
+	}
+	
 }

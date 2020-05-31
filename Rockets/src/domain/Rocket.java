@@ -57,11 +57,11 @@ public class Rocket {
 			new Exception("Error. Negative acceleration");
 		}
 		int thrusters = 0;
-		for (int i = 0; i < this.propeller.size(); i++) {
-			if (this.propeller.get(i). > acceleration) {
+		for (int i = 0; i < this.propellerList.size(); i++) {
+			if (this.propellerList.get(i).getThrusterCapacity() > acceleration) {
 				thrusters += acceleration;
 			} else {
-				thrusters += this.propeller.get(i);
+				thrusters += this.propellerList.get(i).getThrusterCapacity();
 			}
 			this.acceleration = thrusters;
 		}
@@ -80,8 +80,9 @@ public class Rocket {
 	}
 
 	public double calculateFuel() {
-		fuel = fuel - (0.02 * Math.pow(speed, 2));
-		return 0;
+		double currentFuel = this.fuel.getfuelQuantity() - (0.02 * Math.pow(speed, 2));
+		this.fuel.setfuelQuantity(currentFuel);
+		return currentFuel;
 	}
 
 }

@@ -8,4 +8,8 @@ public class Thruster {
 		}
 		this.thrusterCapacity = thrusterCapacity;
 	}
+	
+	public int getThrusterCapacity() {
+		return this.thrusterCapacity;
+	}
 }

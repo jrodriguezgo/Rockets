@@ -10,6 +10,7 @@ public class Main {
 		Race race = new Race(20, 1400);
 	}	
 	
+	//ha d'estar a Race
 	public static void startGame(int time, int distance) throws Exception { /*START A NEW GAME*/
 		boolean out = false;
 		int startTime = 0, currentDistance = 0;
