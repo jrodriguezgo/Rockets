@@ -1,9 +1,6 @@
 package application;
 
-import java.util.ArrayList;
-
 import domain.Rocket;
-import domain.Thruster;
 import utilities.constantUtilities;
 
 public class RocketFactory {

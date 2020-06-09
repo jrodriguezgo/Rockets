@@ -3,13 +3,11 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
-import Keyboard.Keyboard;
 import application.RocketFactory;
 import application.circuitFactory;
 import domain.Circuit;
 import domain.Rocket;
 import domain.Tank;
-import domain.Thruster;
 
 public class Controller {
 	
@@ -19,7 +17,7 @@ public class Controller {
 	public void createRocket(int rocketID) throws Exception {
 		Rocket rocket = RocketFactory.creatRocket(rocketID);
 		addRocket(rocket);
-		System.out.printf("Rocket: "+ rocket.getName() + "\n");
+		System.out.printf("Rocket: "+ Rocket.getName() + "\n");
 		
 	}
 	
@@ -64,7 +62,7 @@ public class Controller {
 		String result = "";
 		for(Rocket rocket : rockets) {
 			rocket.getFuel();
-			result += rocket.getName() + " " + Tank.getfuelQuantity() + "\n";
+			result += Rocket.getName() + " " + Tank.getfuelQuantity() + "\n";
 		}
 		return result;
 	}
