@@ -1,15 +1,30 @@
 package domain;
 
+import Keyboard.Keyboard;
+
+//cada propulsor té la seva acceleració
 public class Thruster {
-	int thrusterCapacity;
-	public Thruster(int thrusterCapacity) {
-		if (thrusterCapacity < 0) {
-			new Exception("Error. Negative capacity");
-		}
-		this.thrusterCapacity = thrusterCapacity;
+
+	private int thrusterCapacity;
+	private int thrusterQuantity;
+
+	public Thruster(int capacity, int quantity) throws Exception {
+		if(capacity <= 0) throw new Exception("Error. Negative capacity");
+		this.thrusterCapacity = capacity;
+		this.thrusterQuantity = quantity;
 	}
 	
+	public int getThrusterQuantity() {
+		return thrusterQuantity;
+	}
+
 	public int getThrusterCapacity() {
-		return this.thrusterCapacity;
+        return thrusterCapacity;
+    }
+	
+	public static int addThrusters() {	/*ASK FOR THRUSTERS QUANTITY*/
+		System.out.print("How many propellers does the rocket have? ");
+		int thrustersQuantity = Keyboard.readInt();
+		return thrustersQuantity;
 	}
 }

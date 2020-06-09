@@ -1,20 +1,39 @@
 package domain;
 
+import Keyboard.Keyboard;
+
 public class Tank {
-	private double fuelQuantity;
-	public Tank(double fuelQuantity) throws Exception{
-		if(fuelQuantity <= 0) {
+	
+	private static double fuelQuantity;
+	//private static int speed;
+	
+	public Tank(double fuel) throws Exception {
+		if(fuel <= 0) {
 			throw new Exception("Incorrect fuel capacity");
 		}
-		this.fuelQuantity = fuelQuantity;
+		//speed = 0;
+		fuelQuantity = fuel;
 	}
 	
-	public double getfuelQuantity() {
-		return this.fuelQuantity;
+	public static double getfuelQuantity() {
+		return fuelQuantity;
 	}
 	
-	public void setfuelQuantity(double fuelQuantity) {
-		this.fuelQuantity = fuelQuantity;
+	public void setfuelQuantity(double quantity) {
+		fuelQuantity = quantity;
+	}
+
+	public static int addFuel() {	/*ASK FOR FUEL CAPACITY*/
+		System.out.print("How much fuel does the rocket have? ");
+		int fuelQuantity = Keyboard.readInt();
+		return fuelQuantity;
+		
 	}
 	
+	public double calculateFuel(Rocket rocket) {	//Fuel
+		rocket.getFuel();
+		double currentFuel = Tank.getfuelQuantity() - rocket.getSpeed();
+		rocket.getFuel().setfuelQuantity(currentFuel);
+		return currentFuel;
+	}
 }

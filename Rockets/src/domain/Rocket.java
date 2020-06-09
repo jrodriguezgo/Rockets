@@ -7,35 +7,34 @@ import java.util.ArrayList;
 
 public class Rocket {
 
-	private String name;
+	private static String name;
 	private int acceleration;
 	private int speed;
 	private int distance;
 	private Tank fuel;
-	//llista ha de serde propulsors
-	private ArrayList<Thruster> propellerList;
-
-	public Rocket(String name, ArrayList<Thruster> propeller, Tank fuel) throws Exception {
-		if (name == null || name.isEmpty())
-			throw new Exception("Incorrect name");
-		this.name = name;
-		this.speed = 0;
+	private  ArrayList <Thruster> propellerList;
+	
+	public Rocket(String coetName, double fuel) throws Exception {
+		if(coetName == null) throw new Exception("Incorrect name.");
+		if(fuel <= 0) throw new Exception("Empty fuel");
+		name = coetName;
+		this.acceleration = 0;
+		speed = 0;
 		this.distance = 0;
-		this.fuel = fuel;
-		this.propellerList = new ArrayList<Thruster>();
-		
-		//cambiar
-		/*
-		 for (int i = 0; i < thrusters; i++) {
-			this.propeller.add(0);
-		}
-		*/
+		this.fuel = new Tank(fuel);
+		propellerList = new ArrayList<Thruster>();
+		//this.propellerList = thrusterList;
+	}
+	
+
+	public void setAcceleration(int acceleration) {
+		this.acceleration = acceleration;
 	}
 
-	public String getName() {
-		return this.name;
+	public static String getName() {
+		return name;
 	}
-
+	
 	public int getAcceleration() {
 		return acceleration;
 	}
@@ -48,11 +47,23 @@ public class Rocket {
 		return distance;
 	}
 
-	public void addThrusters(Thruster thruster) {
-		this.propellerList.add(thruster);
+	public Tank getFuel() {
+		return this.fuel;
 	}
-
-	public int calculateAcceleration(int acceleration, int time) throws Exception {
+	
+	public void addThrusters(int thrustersCapacity, int thrusterQuantity) throws Exception {	
+		if(thrusterQuantity <= 0) throw new Exception("There are no propeller");
+		Thruster propeller = new Thruster(thrustersCapacity, thrusterQuantity);
+			this.propellerList.add(propeller);
+	}
+	
+	public static String getRocketName() {	//ASK FOR COET NAME
+		//System.out.print("What is the name of the rocket? ");
+		String rocketName = getName();
+		return rocketName;
+	}
+	
+	public int calculateAcceleration(int acceleration, int time) throws Exception {	//Acceleration
 		if (acceleration <= 0) {
 			new Exception("Error. Negative acceleration");
 		}
@@ -67,22 +78,19 @@ public class Rocket {
 		}
 		return thrusters * time;
 	}
-
-	public int calculateSpeedDistance(int acceleration, int time) throws Exception {
+	
+	public int calculateSpeedDistance(int acceleration, int time) throws Exception { //Distance
 		if (acceleration <= 0) {
 			new Exception("Error. Negative acceleration");
 		}
 		int currentAcceleration;
 		currentAcceleration = calculateAcceleration(acceleration, time);
 		speed += currentAcceleration;
-		this.distance += this.speed * time;
+		this.distance += speed * time;
 		return 0;
 	}
-
-	public double calculateFuel() {
-		double currentFuel = this.fuel.getfuelQuantity() - (0.02 * Math.pow(speed, 2));
-		this.fuel.setfuelQuantity(currentFuel);
-		return currentFuel;
-	}
-
+	
+	
+	
 }
+
