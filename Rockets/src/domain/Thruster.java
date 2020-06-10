@@ -8,10 +8,10 @@ public class Thruster {
 	private int thrusterCapacity;
 	private int thrusterQuantity;
 
-	public Thruster(int capacity, int quantity) throws Exception {
+	public Thruster(int capacity) throws Exception {
 		if(capacity <= 0) throw new Exception("Error. Negative capacity");
 		this.thrusterCapacity = capacity;
-		this.thrusterQuantity = quantity;
+		//this.thrusterQuantity = quantity;
 	}
 	
 	public int getThrusterQuantity() {

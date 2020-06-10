@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import application.RocketFactory;
-import application.circuitFactory;
+import application.CircuitFactory;
 import domain.Circuit;
 import domain.Rocket;
 import domain.Tank;
@@ -22,7 +22,7 @@ public class Controller {
 	}
 	
 	public void createCircuits(int circuitID) throws Exception {
-		Circuit circuit = circuitFactory.creatCircuit(circuitID);
+		Circuit circuit = CircuitFactory.creatCircuit(circuitID);
 		addCircuit(circuit);
 		
 		System.out.print("------------------------------------\n");

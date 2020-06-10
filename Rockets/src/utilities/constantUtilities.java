@@ -12,5 +12,7 @@ public class constantUtilities {
 	public static final int FREE_WORLD = 7;
 	public static final int RISING_LAP = 8;
 	
+	public static final String USARNAME_BBDD = "asabater";
+	public static final String PASSWORD_BBDD = "Casillas99#";
 
 }

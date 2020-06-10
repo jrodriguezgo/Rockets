@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.ArrayList;
+
 import Keyboard.Keyboard;
 
 public class Circuit {
@@ -41,6 +43,7 @@ public class Circuit {
 			startTime = calculateRace(rocket, fuelTank, time, startTime, distance, currentDistance);
 			calculateFuel(rocket, fuelTank);
 			currentDistance = rocket.getDistance();
+			//System.out.print(Rocket.getPropellerList());
 			
 			out = fuelResults(distance, rocket, currentDistance);
 		}
@@ -48,16 +51,19 @@ public class Circuit {
 	}
 	
 	private Rocket createRocket() throws Exception {	/*CREATES THE ROCKET*/
+		String id = Rocket.getID();
 		String rocketName = Rocket.getRocketName();
-		int thrustersQuantity = Thruster.addThrusters();
+		//int thrustersQuantity = Thruster.addThrusters();
+		ArrayList<Thruster> thrustersQuantity = Rocket.getPropellerList();
 		double fuelQuantity = Tank.getfuelQuantity();
-		Rocket rocket = new Rocket(rocketName,fuelQuantity);
-		for(int i = 0; i < thrustersQuantity; i++) {
-			System.out.print("Please, enter the thruster capacity: ");
-			int propellerCapacity = Keyboard.readInt();
-			rocket.addThrusters(propellerCapacity, thrustersQuantity);
-		}
-		return rocket;	
+		Rocket rocket = new Rocket(id, rocketName,fuelQuantity, thrustersQuantity);
+		//for(int i = 0; i < thrustersQuantity.size(); i++) {
+			//System.out.print("Please, enter the thruster capacity: ");
+			//int propellerCapacity = Keyboard.readInt();
+			//rocket.getPropellerList();
+		//}
+		//return rocket;	
+		return rocket;
 	}
 	
 	private int enterAcceleration() {
