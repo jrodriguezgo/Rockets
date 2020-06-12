@@ -3,5 +3,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="Rockets/src"/>
 	<classpathentry kind="lib" path="Rockets/lib/Keyboard.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Joan/.m2/repository/org/json/json/20180813/json-20180813.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Joan/Documents/ojdbc10-full/ojdbc10.jar"/>
 	<classpathentry kind="output" path="Rockets/bin"/>
 </classpath>

@@ -3,19 +3,45 @@ package domain;
 import java.util.ArrayList;
 
 import Keyboard.Keyboard;
+import application.dto.CircuitDTO;
 
 public class Circuit {
-	String name;
+	protected String id;
+	protected String name;
 	protected int time;
 	protected int distance;
+	protected int startTime = 0;
 	
-	public Circuit(String name, int time, int distance) throws Exception {
+	public Circuit(String circuitID, String name, int time, int distance) throws Exception {
+		if(circuitID == null) throw new Exception("Incorrect id.");
 		if(name.equals(null))throw new Exception("Empty name");
 		if(time <= 0)throw new Exception("Wrong time");
 		if(distance <= 0)throw new Exception("Wrong distance");
 		this.name = name;
 		this.time = time;
 		this.distance = distance;
+		this.id = circuitID;
+	}
+	
+	public Circuit(CircuitDTO CircuitDTO) throws Exception {
+		if(CircuitDTO == null) throw new Exception("Error");
+		name = CircuitDTO.getName();
+		time = CircuitDTO.getBestTime();
+		distance = CircuitDTO.getDistance();
+	}
+	
+	public String getId() {
+		return id;
+	}
+
+	public int getStartTime() {
+		return startTime;
+	}
+	
+	public void updateCircuit(CircuitDTO circuitDTO) throws Exception {
+		name = circuitDTO.getName();
+		time = circuitDTO.getBestTime();
+		distance = circuitDTO.getDistance();
 	}
 	
 	public String getName() {
@@ -33,7 +59,7 @@ public class Circuit {
 	//ha d'estar a Race
 	public void startGame() throws Exception { /*START A NEW GAME*/
 		boolean out = false;
-		int startTime = 0, currentDistance = 0, set;
+		int currentDistance = 0, set;
 		Rocket rocket = createRocket();	
 		rocket.getFuel();
 		Tank fuelTank = new Tank(Tank.getfuelQuantity());

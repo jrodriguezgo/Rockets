@@ -10,6 +10,8 @@ public class RocketDTO {
 	private Tank fuelTank;
 	
 	public RocketDTO(String name, double fuelTank) throws Exception {
+		if(name == null) throw new Exception("Empty name");
+		if(fuelTank < 0) throw new Exception("Empty fuel");
 		this.name = name;
 		this.fuelTank = new Tank(fuelTank);
 	}
@@ -37,7 +39,7 @@ public class RocketDTO {
 	}
 
 	public String toString() {
-		return "ROCKET " + this.id + " name: " + this.name;
+		return "\nROCKET " + this.id + " name: " + this.name;
 	}
 	
 

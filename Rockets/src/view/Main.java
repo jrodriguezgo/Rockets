@@ -1,7 +1,11 @@
 package view;
 
+
+import application.RaceController;
 import application.RocketController;
+import application.dto.CircuitDTO;
 import application.dto.RocketDTO;
+
 import domain.Rocket;
 import utilities.constantUtilities;
 
@@ -9,13 +13,12 @@ public class Main {
 
 	
 	private static RocketController controller = new RocketController();
+	private static RaceController circuitController = new RaceController();
 	
 	public static void main(String[]args) throws Exception{
-//		Circuit race = new Circuit("IceRace", 20, 1400);
+		//Circuit race = new Circuit(UUID.randomUUID().toString(),"IceRace", 20, 1400);
 //		race.startGame();
-//		RocketDTO rocket = createRocket();
-//		updateRocket(rocket.getId());
-//		getRockets(rocket.getId());
+		
 		Controller controller = new Controller();
 		controller.createRocket(constantUtilities.FALCON_IX);
 		//controller.createRocket(constantUtilities.SPEEDY_V);
@@ -23,7 +26,7 @@ public class Main {
 		//controller.createRocket(constantUtilities.VIPER_X);
 		//randomCircuit();
 //		if(circuit == 1)
-		controller.createCircuits(constantUtilities.FREE_WORLD);
+		controller.createCircuits();
 //		if(circuit == 2)
 //		controller.createCircuits(constantUtilities.MAD_MAX);
 //		if(circuit == 3)
@@ -34,33 +37,18 @@ public class Main {
 		//System.out.print(controller.printRockets());
 		//System.out.print(controller.printCircuits());
 		controller.startCompetition();
+		RocketDTO rocket = createRocket();
+		//updateRocket(rocket.getId());
+		//getRockets(rocket.getId());
+		CircuitDTO circuit = createCircuit();
+		//updateCircuit(circuit.getId());
+		//getCircuit(circuit.getId());
 	}	
 	
-	public static void randomCircuit() throws Exception {
-		//int[] circuit = {1,2,3,4};
-		//circuit = (int[]) Math.random();
-		int circuit = 2;
-		
-		Controller controller = new Controller();
-		
-        
-        switch (circuit) 
-        {
-            case 1:  controller.createCircuits(constantUtilities.MAD_MAX);
-                     break;
-            case 2:  controller.createCircuits(constantUtilities.FREE_WORLD);
-                     break;
-            case 3:  controller.createCircuits(constantUtilities.RISING_LAP);
-                     break;
-            case 4:  controller.createCircuits(constantUtilities.SPEED_TRACK);
-                     break;
-      
-        }
-        //System.out.println(circuit);
-	}
+
 	
 	public static void updateRocket(String id) throws Exception {
-		RocketDTO rocket = new RocketDTO("latuyactm", 555);
+		RocketDTO rocket = new RocketDTO("hola", 555);
 		rocket = controller.updateRocket(id, rocket);
 		System.out.print(rocket);
 	}
@@ -71,9 +59,27 @@ public class Main {
 	}
 	
 	private static RocketDTO createRocket() throws Exception {
-		RocketDTO rocket = new RocketDTO("tumama", 666);	//no te id
+		RocketDTO rocket = new RocketDTO(Rocket.getName(), 666);	//no te id
 		rocket = controller.createRocket(rocket);
 		System.out.println(rocket);
 		return rocket;
 	}	
+	
+	private static CircuitDTO createCircuit() throws Exception {
+		CircuitDTO circuitDTO = new CircuitDTO("circuit1", 12, 222);	//no te id
+		circuitDTO = circuitController.createCircuit(circuitDTO);
+		System.out.println(circuitDTO);
+		return circuitDTO;
+	}
+	
+	public static void updateCircuit(String id) throws Exception {
+		CircuitDTO circuit = new CircuitDTO("LAND", 12, 1500);
+		circuit = circuitController.updateCircuit(id, circuit);
+		System.out.print(circuit);
+	}
+	
+	public static void getCircuit(String id) throws Exception {
+		CircuitDTO circuit = circuitController.getCircuit(id);
+		System.out.print(circuit);
+	}
 }

@@ -4,23 +4,22 @@ import java.security.InvalidParameterException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-import domain.Rocket;
-import domain.Thruster;
+import domain.Circuit;
 
-public class RocketRepository {
+public class RaceRepository {
 	
-	public static void storeRocket(Rocket rocket) throws Exception {
+	public static void storeCircuit(Circuit circuit) throws Exception {
 		ConnectionBBDD connection =  ConnectionRepository.getConnection();
 		try {
 			String sql = "Insert into ROCKETS_JAIME (ID, NAME) values (?,?)";
 			
 			PreparedStatement pst = connection.prepareStatement(sql);
 			pst.clearParameters();
-			pst.setString(1, rocket.getID());
-			pst.setString(2, rocket.getName());
-			//pst.setObject(3, rocket.getFuel());
+			pst.setString(1, circuit.getId());
+			pst.setString(2, circuit.getName());
+			//pst.setInt(3, circuit.getTime());
+			//pst.setInt(4, circuit.getDistance());
 			if(pst.executeUpdate() != 1) {
 				throw new InvalidParameterException();
 			}
@@ -29,10 +28,10 @@ public class RocketRepository {
 		}
 	}
 	
-	public static Rocket getRocket(String rocketID) throws Exception {
+	public static Circuit getCircuit(String rocketID) throws Exception {
 		ConnectionBBDD connection =  ConnectionRepository.getConnection();
 		try {
-			String sql = "SELECT * FROM ROCKETS WHERE ID=?";
+			String sql = "SELECT * FROM ROCKETS_JAIME WHERE ID=?";
 			
 			PreparedStatement pst = connection.prepareStatement(sql);		
 			pst.clearParameters();
@@ -42,9 +41,9 @@ public class RocketRepository {
 			if(rs.next()) {
 				String id = rs.getString("ID");
 				String name = rs.getString("NAME");
-				Double fuel = rs.getDouble("FUEL");
-				ArrayList<Thruster> thrusters = (ArrayList<Thruster>) rs.getArray("THRUSTERS");
-				return new Rocket(id, name, fuel, thrusters);
+				int time = rs.getInt("TIME");
+				int distance = rs.getInt("DISTANCE");
+				return new Circuit(id, name, time, distance);
 			}
 			throw new InvalidParameterException();
 		}catch(SQLException e) {
@@ -53,16 +52,17 @@ public class RocketRepository {
 		}
 	}
 	
-	public static void updateRocket(Rocket rocket) throws Exception {
+	public static void updateCircuit(Circuit circuit) throws Exception {
 		ConnectionBBDD connection =  ConnectionRepository.getConnection();
 		try {
-			String sql = "UPDATE ROCKETS SET FUEL=?, NAME=? WHERE ID=?";
+			String sql = "UPDATE ROCKETS_JAIME SET NAME=? WHERE ID=?";
 			
 			PreparedStatement pst = connection.prepareStatement(sql);		
 			pst.clearParameters();
-			pst.setObject(1, rocket.getFuel());
-			pst.setObject(2, rocket.getName());
-			pst.setString(3, rocket.getID());
+			//pst.setInt(1, circuit.getDistance());
+			//pst.setInt(2, circuit.getTime());
+			pst.setString(1, circuit.getName());
+			pst.setString(2, circuit.getId());
 			
 			if(pst.executeUpdate() != 1) {
 				throw new InvalidParameterException();

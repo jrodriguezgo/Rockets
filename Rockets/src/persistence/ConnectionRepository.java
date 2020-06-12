@@ -4,11 +4,11 @@ import utilities.constantUtilities;
 
 public class ConnectionRepository {
 	
-	private static BBDDConnection connection; 
+	private static ConnectionBBDD connection; 
 	
-	static BBDDConnection getConnection() throws Exception {
+	static ConnectionBBDD getConnection() throws Exception {
 		if (connection == null) 
-			connection = new BBDDConnection(constantUtilities.USARNAME_BBDD, constantUtilities.PASSWORD_BBDD);
+			connection = new ConnectionBBDD(constantUtilities.USARNAME_BBDD, constantUtilities.PASSWORD_BBDD);
 		return connection;
 	}
 
